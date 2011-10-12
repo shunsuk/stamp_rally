@@ -1,0 +1,44 @@
+/*
+ * shunsuk
+ * Server-less Stamp Rally System
+ * スシが食べたい。
+ */
+
+.shop {
+    width: 200px;
+    padding: 10px;
+    float: left;
+    background-color: #EDEFF4;
+    margin-right: 10px;
+}
+
+#twitter {
+    width: 660px;
+    background-color: #ECF6FA;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#footer {
+    margin-top: 40px;
+}
+
+#footer td {
+    font-size: 40px;
+    border-bottom: 1px solid black;
+    margin-right: 40px;
+}
+
+.stamp {
+  position: absolute;
+  z-index: 100;
+  bottom: 20px;
+  right: 20px;
+  width: 80px;
+  background-color: #FBF9EA;
+  border: 1px solid #E2E1D5;
+  text-align: center;
+  font-size: 80px;
+  color: red;
+  line-height: 90px;
+}

@@ -1,0 +1,98 @@
+<!-- shunsuk : スシが食べたい。 -->
+<!-- Server-less Stamp Rally System -->
+<html>
+  <head>
+    <title>スシ・ポイントラリー</title>
+    <link rel="stylesheet" type="text/css" href="rally_server.css">
+    <script type="text/javascript" src="jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="rally_server.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var server = new RallyServer({
+                whitelist: [
+                    'miyazaki-no-macbook-pro.local',
+                    'shunsuk.net',
+                ],
+
+                pages: {
+                    'sushi1': 'http://shunsuk.net/rally/rally1.html',
+                    'sushi2': 'http://shunsuk.net/rally/rally2.html',
+                    'sushi3': 'http://shunsuk.net/rally/rally3.html',
+                },
+            });
+
+            $('.shop').each(function(i) {
+                var id = $(this).attr('id');
+                urlForPage = server.urlForPage(id);
+
+                $(this).click((function() {
+                    var url = urlForPage;
+                    return function() {
+                        window.open(url);
+                    }
+                })());
+            });
+
+            var update = function() {
+                $('.shop').each(function(i) {
+                    var id = $(this).attr('id');
+                    url = server.urlForPage(id);
+
+                    if (server.visited(id) && !$(this).hasClass('visited')) {
+                        var stamp = $('<div>')
+                            .addClass('stamp')
+                            .css('opacity', 0)
+                            .text('★')
+                            .animate({
+                                'opacity': 1,
+                            }, 3 * 1000);
+
+                        $(this).css('position', 'relative').append(stamp);
+                        $(this).addClass('visited');
+                    }
+                });
+
+                if (server.completed()) {
+                    $('#twitter').show(1 * 1000);
+                }
+            };
+
+            update();
+            setInterval(update, 3 * 1000);
+        });
+    </script>
+    <style type="text/css">
+    </style>
+  </head>
+  <body>
+    <h1>スシ・ポイントラリー</h1>
+    <p>お店のサイトをまわってスタンプを集めよう！</p>
+
+    <div id="twitter" style="display:none;">
+      <h2>おめでとうございます！！</h2>
+      <p>下のボタンをクリックして、Twitterにつぶやくと応募完了です。</p>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://shunsuk.net/rally/rally_server.html" data-text="今日も明日も #スシが食べたい。" data-count="none" data-via="shunsuk" data-lang="ja">ツイート</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    </div>
+
+    <div class="shop" id="sushi1">
+      <h2>天草スシロー</h2>
+      <img src="images/sushi1.jpg" alt="" style="width:200px" />
+    </div>
+
+    <div class="shop" id="sushi2">
+      <h2>ねくら寿司</h2>
+      <img src="images/sushi2.jpg" alt="" style="width:200px" />
+    </div>
+
+    <div class="shop" id="sushi3">
+      <h2>寿司処TIRAL</h2>
+      <img src="images/sushi3.jpg" alt="" style="width:200px" />
+    </div>
+
+    <div style="clear:both;"></div>
+
+    <div id="footer">
+      <a href="#" onclick="(new RallyServer()).clearAll(); location.reload(); return false;">データを消す。</a>
+    </div>
+  </body>
+</html>
