@@ -1,0 +1,30 @@
+* Server-less Stamp Rally System
+
+
+** Change server url.
+
+rally_core.js
+
+var serverDomain = "http://shunsuk.net";
+var serverPath = "/rally/rally_server.html";
+
+
+** Add shop domains to the white list.
+
+rally_server.html 
+
+whitelist: [
+    'miyazaki-no-macbook-pro.local',
+    'shunsuk.net',
+],
+
+
+** Change shop url
+
+rally_server.html 
+
+pages: {
+    'sushi1': 'http://shunsuk.net/rally/rally1.html',
+    'sushi2': 'http://shunsuk.net/rally/rally2.html',
+    'sushi3': 'http://shunsuk.net/rally/rally3.html',
+},

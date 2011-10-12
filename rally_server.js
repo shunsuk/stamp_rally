@@ -6,6 +6,7 @@
  * shunsuk
  * Server-less Stamp Rally System
  * スシが食べたい。
+ * http://d.hatena.ne.jp/shunsuk/20111012/1318420264
  */
 
 var RallyServer = function(option) {

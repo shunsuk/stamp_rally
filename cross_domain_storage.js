@@ -8,6 +8,7 @@
  * Server-less Stamp Rally System
  * 値をセットするメソッド setValue を追加。
  * スシが食べたい。
+ * http://d.hatena.ne.jp/shunsuk/20111012/1318420264
  */
 
 function CrossDomainStorage(origin, path) {
